@@ -117,8 +117,13 @@ def Greedy(graph, straight_distance, origin = "arad", destination = "bucharest")
         if origin_cost == 0:
             solution.append(origin)
             return 1
+        #reorder node from closest to farthest
         neighbours = list(graph[origin].keys())
+        distance_list = []
         for n in neighbours:
+            distance_list.append((n, straight_distance[n]))
+        distance_list.sort(key=lambda y: y[1])
+        for (n,d) in distance_list:
             if (n not in visited):
                 if Greedy(graph, straight_distance, n, destination) == 1:
                     # if return 1 -> destination found -> add self as path to solution ->  signal to retroactively add caller
