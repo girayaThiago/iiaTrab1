@@ -123,13 +123,13 @@ def Greedy(graph, straight_distance, origin = "arad", destination = "bucharest")
         for n in neighbours:
             distance_list.append((n, straight_distance[n]))
         distance_list.sort(key=lambda y: y[1])
-        for (n,d) in distance_list:
+        for (n,_) in distance_list:
             if (n not in visited):
                 if Greedy(graph, straight_distance, n, destination) == 1:
                     # if return 1 -> destination found -> add self as path to solution ->  signal to retroactively add caller
                     solution.append(origin)
                     return 1
-        return None
+    return None
 
 def Astar(graph, origin = "arad", destination = "bucharest"):
     if graph == None:
