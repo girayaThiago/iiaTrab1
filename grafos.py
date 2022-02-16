@@ -25,6 +25,30 @@ straight_distance_arad_bucharest = {
     "zerind" : 374
 }
 
+# trocar de valor para tupla (valor, [caminho])
+total_cost_from_origin = {
+    "arad" : 999,
+    "bucharest" : 999,
+    "craiova" : 999,
+    "dobreta" : 999,
+    "eforie" : 999,
+    "fagaras" : 999,
+    "giurgiu" : 999,
+    "hirsova" : 999,
+    "iasi" : 999,
+    "lugoj" : 999,
+    "mehadia" : 999,
+    "neamt" : 999,
+    "oradea" : 999,
+    "pitesti" : 999,
+    "rimnicu vilcea" : 999,
+    "sibiu" : 999,
+    "timisoara" : 999,
+    "urziceni" : 999,
+    "vaslui" : 999,
+    "zerind" : 999
+}
+
 # Create the dictionary with graph elements
 graph = { 
    "arad" : {
@@ -103,11 +127,18 @@ solution = []
 # 2.Greedy Approach; 
 # 3.A*
 #
-def UCS(graph, origin = "arad", destination = "bucharest"):
+
+#guardar caminho em listas, quando trocar caminho expurgar lista antiga, guardar nova
+def UCS(graph, current_node = "arad", origin = "arad", destination = "bucharest"):
     if graph == None:
-        return None
+        return
     if origin in graph and destination in graph:
-        return None
+        if current_node == origin:
+            total_cost_from_origin[origin] = 0
+        else:
+            total_cost_from_origin[origin] = min(total_cost_from_origin[current_node] + graph[current_node][origin], total_cost_from_origin[origin])
+        for n in graph[origin].keys():
+            UCS(graph, n, origin, destination)
 
 def Greedy(graph, straight_distance, origin = "arad", destination = "bucharest"):
     if (origin not in visited):
@@ -151,4 +182,7 @@ for city in solution:
 
 print(f"greedy solution pathway = {solution}, total cost: {cost}")
 
+UCS(graph)
+cost = total_cost_from_origin["bucharest"]
+print(f"solution for UCS total cost = {cost}")
 #print(visited)
