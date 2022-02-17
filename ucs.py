@@ -107,7 +107,6 @@ path_from_origin = {
 def UCS(graph, origin = "arad", current = "arad", current_path = []):
     path_from_origin[origin].cost = 0
     destination = "bucharest"
-    print(f"Visiting {current}")
     neighbours = list(graph[current].keys())
     current_path.append(current)
     for n in neighbours:
