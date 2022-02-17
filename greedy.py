@@ -116,7 +116,6 @@ def Greedy(graph, straight_distance, origin = "arad", destination = "bucharest")
                     solution.append(origin)
                     # -> return 1 = signal to also add caller
                     return 1
-    print("Chagamos a uma folha, e caminho não foi encontrado")
     return None
 
 Greedy(graph, straight_distance_to_bucharest)
