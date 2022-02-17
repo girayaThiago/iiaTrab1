@@ -69,7 +69,7 @@ graph = {
 
 }
 
-straight_distance_arad_bucharest = {
+straight_distance_to_bucharest = {
     "arad" : 366,
     "bucharest" : 0,
     "craiova" : 160,
@@ -117,7 +117,7 @@ def Greedy(graph, straight_distance, origin = "arad", destination = "bucharest")
     print("Chagamos a uma folha, e caminho não foi encontrado")
     return None
 
-Greedy(graph, straight_distance_arad_bucharest)
+Greedy(graph, straight_distance_to_bucharest)
 solution.reverse()
 cost = 0
 current = None
