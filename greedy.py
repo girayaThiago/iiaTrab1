@@ -111,8 +111,10 @@ def Greedy(graph, straight_distance, origin = "arad", destination = "bucharest")
         for (n,_) in distance_list:
             if (n not in visited):
                 if Greedy(graph, straight_distance, n, destination) == 1:
-                    # if return 1 -> destination found -> add self as path to solution ->  signal to retroactively add caller
+                    # if return 1 -> destination found 
+                    # add self as path to solution 
                     solution.append(origin)
+                    # -> return 1 = signal to also add caller
                     return 1
     print("Chagamos a uma folha, e caminho não foi encontrado")
     return None
